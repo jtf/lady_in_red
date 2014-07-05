@@ -1,0 +1,188 @@
+.TH jo 3erl "lady_in_red" "jtf" "ANSI for Erlang, Module Definition"
+.SH NAME
+jo \- just output, wrapping ANSI escape sequences in io
+.SH DESCRIPTION
+.LP
+The standard function for formatted output (module io) lacks an friendly interface for colour output.  This module is a wrapper around io, so you can replace io:format/n commands with jo:format/n commands.  Still all command sequences of io module can be used.
+.LP
+
+.SH DATA TYPES
+.nf
+\fBdevice()\fR\& = atom() | pid()
+.br
+.fi
+.RS
+.LP
+An IO device,  see io(3erl) for further informations\&.
+.RE
+.nf
+
+\fBformat()\fR\& = string()
+.br
+.fi
+.RS
+.LP
+A format string which is processed and then passed to io:format/1..3.
+.RE
+.nf
+
+\fBcolour_name()\fR\& = atom()
+.br
+.fi
+.RS
+.LP
+A colour name as atom: black, red, green, yellow, blue, magenta, cyan and white are defined\&.
+Also are colour names with prefix "light_" are defined (I\&. e\&. light_green)\&.  Effect depends on support of output device (xterm, etc.)
+.RE
+
+\fBtrue_colour()\fR\& =
+.br
+	      {rgb, int(), int(), int()}
+.br
+	    | colour_string()
+.br
+.fi
+.RS
+.LP
+A colour description in form a tuple with integers for red, green and blue within 0..255 or as HTML-like string "#FFDC00" or shortend HTML-like form "#FD0"\&.
+.RE
+
+\fBcolour_256()\fR\& =
+.br
+	      {rgb8, 0..5, 0..5, 0..5}
+.br
+	    | {web,  0..215}
+.br
+	    | {rgb8, 0..255}
+.br
+	    | {grey, 0..24} or also as {gray, 0..24}
+.br
+.fi
+.RS
+.LP
+The 256 colour palette is devided in different parts, the values 0..15 are the standard colours, the values 16..231 are the colour palette and a 24 step grey scale is located at the values 232..255.  For direct palette access use {rgb8, colour}.  For colour access you can use the {rgb8, R, G, B} or the {web, C} tuple.  The grey scale can be accessed trough the {grey, G} tuple with values from 0..23.  For convenience reasons the brighter white of the colour part is added as value 24.
+.RE
+
+.SH EXPORTS
+.LP
+.nf
+
+.B
+fwrite(Format) -> ok
+.br
+.B
+fwrite(Format, Data) -> ok
+.br
+.B
+fwrite(IoDevice, Format, Data) -> ok
+.br
+.fi
+.br
+.nf
+
+.B
+format(Format) -> ok
+.br
+.B
+format(Format, Data) -> ok
+.br
+.B
+format(IoDevice, Format, Data) -> ok
+.br
+.fi
+.br
+.RS
+.LP
+Types:
+
+.RS 3
+IoDevice = \fBdevice()\fR\&
+.br
+Format = \fBformat()\fR\&
+.br
+Data = [term()]
+.br
+.RE
+.RE
+.RS
+.LP
+All command sequences of io:format are supported.  See io:format (3erl) for further informations.  In most cases a simple source code replacement of io:format/n with jo:format/n can be done.
+Furthermore the jo-module deliveres command sequences for ANSI sequence generation.
+.RS 2
+.TP 2
+.B
+\fIm\fR\&:
+This command is for 16 colour output with standard ANSI escape sequences.
+Without any parameter a reset is done.  That means all colour or style output is resetted to default (e.g. grey on black).
+Use this if for a full stop of colour output.
+
+The m command sequence has the form ~FG.BG.Mm.  Every Field is optional.
+
+FG sets the foreground or text colour and can be an integer between 30 and 37 (or 0, .., 7 for short).
+
+The second field BG sets the background colour.  It can be an integer between 40 and 47 (also for short 0, .., 7).
+
+If your terminal has the capability for bright colours you can also use the values from 90 to 97 for light foreground colours and from 100 to 107 for light background colours.
+
+Instead of setting the field direct by parameter an asterisk * can be used.  In this case the next argument in list is expected to be the value.
+Beside the previous numerical values colour names can be used.  The colours black, red, green, yellow, blue, magenta, cyan and white are defined.
+The bright versions can be accessed through the prefix "light_".
+
+The third field M is used for text formatting can be a number between 0 and 9 as described below.  If an asterisk * is used the value is expected in argument list.
+The asterisk gives additional advantage for set multiple at once.  In this case a list is excepted.  The following modifierers are defined, the effect depends on used terminal:
+normal (0), bold (1), faint (2), italic (3), underline (4), blink (5), blinkfast (6), inverse (7), invisible or hidden (8) and crossed_out (9).
+Exclusively available with asterisk selection: doubly_underlined (21), not_bold_nor_faint (22), not_italic (23), not_underlined (24),
+not_blinking or steady (25), positive (27), visible (28), not_crossed_out (29).
+
+The following examples will give the same result:
+.nf
+1> jo:format("~31.44.4mYay~m").
+2> jo:format("~1.4.4mYay~m").
+3> jo:format("~*.4.4mYay~m", [1]).
+4> jo:format("~*.*.*mYay~m", [1,4, underline]).
+5> jo:format("~*.*.*mYay~m", [red, blue, 4]).
+.fi
+
+An example with multiple options:
+.nf
+jo:format("~*..*mLady~m in Red.~n", [red, [underline, blink]]).
+.fi
+.LP
+.nf
+.RE
+.RS 2
+.TP 2
+.B
+\fItm\fR\&:
+.fi
+The modifier t is used for true colours.  To set foreground or background colour an asterisk must be set in the corresponding field.
+The M field for text formatting can be a number or an asterisk with additional argument.
+The colours are set in the argument list and can be in any form of the above defined types true_colour() or colour_256().
+
+The following commands are equivalent:
+.nf
+1> jo:format("~*.*.*tmLady~m in Red.~n", [{rgb, 255,20,20}, "#555555", blink]).
+2> jo:format("~*.*.5tmLady~m in Red.~n", ["#ff1414", "#555"]).
+.fi
+
+Another example with palette use:
+.nf
+3> jo:format("~*.*tmLady~m in Red.~n", [{rgb8, 210} , {grey, 3}]).
+.fi
+.LP
+.nf
+.RE
+.RS 2
+.TP 2
+.B
+\fItn\fR\&:
+.fi
+This command provides a conditional newline.  It overloades the normal ~n and prints a newline only if the argument is true.
+.nf
+1> jo:format("1st ~tn2nd ~n",[true]).
+1st 
+2nd 
+2> jo:format("1st ~tn2nd ~n",[false]).
+1st 2nd 
+3> jo:format("1st ~tn2nd ~n",[3==2]).
+1st 2nd 

@@ -1,0 +1,14 @@
+{application, lady_in_red,
+ [
+  {description, "ANSI colours and more for Erlang shell"},
+  {vsn, "0.1.0"},
+  {modules, [lady_in_red,  jo_lib_fmt,  jo_lib,  jo]},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { lady_in_red, []}},
+  {env, []}
+ ]}.
+
