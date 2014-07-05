@@ -242,7 +242,8 @@ pass_through_integer_test() ->
     ?assertEqual(io_lib:format("~.. b", [4711]),     jo_lib:format("~.. b", [4711])),
     ?assertEqual(io_lib:format("~*b",   [10,4711]),  jo_lib:format("~*b",   [10,4711])),
     ?assertEqual(io_lib:format("~.*b",  [12,4711]),  jo_lib:format("~.*b",  [12,4711])),
-    ?assertEqual(io_lib:format("~..*b", [$…,4711]),  jo_lib:format("~..*b", [$…,4711])),
+    ?assertEqual(io_lib:format("~..*b", [$a,4711]),  jo_lib:format("~..*b", [$a,4711])),
+%    ?assertEqual(io_lib:format("~..*b", [$…,4711]),  jo_lib:format("~..*b", [$…,4711])),
     % two options
     ?assertEqual(io_lib:format("~10.16b", [4711]),   jo_lib:format("~10.16b", [4711])),
     ?assertEqual(io_lib:format("~10.._b", [4711]),   jo_lib:format("~10.._b", [4711])),
@@ -263,7 +264,8 @@ pass_through_integer_test() ->
     ?assertEqual(io_lib:format("~.. #", [4711]),     jo_lib:format("~.. #", [4711])),
     ?assertEqual(io_lib:format("~*#",   [10,4711]),  jo_lib:format("~*#",   [10,4711])),
     ?assertEqual(io_lib:format("~.*#",  [12,4711]),  jo_lib:format("~.*#",  [12,4711])),
-    ?assertEqual(io_lib:format("~..*#", [$…,4711]),  jo_lib:format("~..*#", [$…,4711])),
+    ?assertEqual(io_lib:format("~..*#", [$a,4711]),  jo_lib:format("~..*#", [$a,4711])),
+%    ?assertEqual(io_lib:format("~..*#", [$…,4711]),  jo_lib:format("~..*#", [$…,4711])),
     % two options
     ?assertEqual(io_lib:format("~10.16#", [4711]),    jo_lib:format("~10.16#", [4711])),
     ?assertEqual(io_lib:format("~10.._#", [4711]),    jo_lib:format("~10.._#", [4711])),
@@ -284,7 +286,8 @@ pass_through_integer_test() ->
     ?assertEqual(io_lib:format("~.. +", [4711]),     jo_lib:format("~.. +", [4711])),
     ?assertEqual(io_lib:format("~*+",   [10,4711]),  jo_lib:format("~*+",   [10,4711])),
     ?assertEqual(io_lib:format("~.*+",  [12,4711]),  jo_lib:format("~.*+",  [12,4711])),
-    ?assertEqual(io_lib:format("~..*+", [$…,4711]),  jo_lib:format("~..*+", [$…,4711])),
+    ?assertEqual(io_lib:format("~..*+", [$a,4711]),  jo_lib:format("~..*+", [$a,4711])),
+%    ?assertEqual(io_lib:format("~..*+", [$…,4711]),  jo_lib:format("~..*+", [$…,4711])),
     % two options
     ?assertEqual(io_lib:format("~10.16+", [4711]),    jo_lib:format("~10.16+", [4711])),
     ?assertEqual(io_lib:format("~10.._+", [4711]),    jo_lib:format("~10.._+", [4711])),
@@ -305,7 +308,8 @@ pass_through_integer_test() ->
     ?assertEqual(io_lib:format("~.12x", [4711,">>"]),     jo_lib:format("~.12x", [4711,">>"])),
     ?assertEqual(io_lib:format("~.*x",  [12,4711,">>"]),  jo_lib:format("~.*x",  [12,4711,">>"])),
     ?assertEqual(io_lib:format("~.. x", [4711,">>"]),     jo_lib:format("~.. x", [4711,">>"])),
-    ?assertEqual(io_lib:format("~..*x", [$…,4711,">>"]),  jo_lib:format("~..*x", [$…,4711,">>"])),
+    ?assertEqual(io_lib:format("~..*x", [$a,4711,">>"]),  jo_lib:format("~..*x", [$a,4711,">>"])),
+%    ?assertEqual(io_lib:format("~..*x", [$…,4711,">>"]),  jo_lib:format("~..*x", [$…,4711,">>"])),
     % two options
     ?assertEqual(io_lib:format("~10.16x", [4711,">>"]),     jo_lib:format("~10.16x", [4711,">>"])),
     ?assertEqual(io_lib:format("~10.._x", [4711,">>"]),     jo_lib:format("~10.._x", [4711,">>"])),
@@ -326,7 +330,8 @@ pass_through_integer_test() ->
     ?assertEqual(io_lib:format("~.12X", [4711,">>"]),     jo_lib:format("~.12X", [4711,">>"])),
     ?assertEqual(io_lib:format("~.*X",  [12,4711,">>"]),  jo_lib:format("~.*X",  [12,4711,">>"])),
     ?assertEqual(io_lib:format("~.. X", [4711,">>"]),     jo_lib:format("~.. X", [4711,">>"])),
-    ?assertEqual(io_lib:format("~..*X", [$…,4711,">>"]),  jo_lib:format("~..*X", [$…,4711,">>"])),
+    ?assertEqual(io_lib:format("~..*X", [$a,4711,">>"]),  jo_lib:format("~..*X", [$a,4711,">>"])),
+%    ?assertEqual(io_lib:format("~..*X", [$…,4711,">>"]),  jo_lib:format("~..*X", [$…,4711,">>"])),
     % two options
     ?assertEqual(io_lib:format("~10.16X", [4711,">>"]),     jo_lib:format("~10.16X", [4711,">>"])),
     ?assertEqual(io_lib:format("~10.._X", [4711,">>"]),     jo_lib:format("~10.._X", [4711,">>"])),
@@ -372,7 +377,8 @@ pass_through_float_test() ->
     ?assertEqual(io_lib:format("~.. e", [1.23]),    jo_lib:format("~.. e", [1.23])),
     ?assertEqual(io_lib:format("~*e",   [10,1.23]), jo_lib:format("~*e",   [10,1.23])),
     ?assertEqual(io_lib:format("~.*e",  [3,1.23]),  jo_lib:format("~.*e",  [3,1.23])),
-    ?assertEqual(io_lib:format("~..*e", [$…,1.23]), jo_lib:format("~..*e", [$…,1.23])),
+    ?assertEqual(io_lib:format("~..*e", [$a,1.23]), jo_lib:format("~..*e", [$a,1.23])),
+%    ?assertEqual(io_lib:format("~..*e", [$…,1.23]), jo_lib:format("~..*e", [$…,1.23])),
     % two options
     ?assertEqual(io_lib:format("~10.16e", [1.23]),       jo_lib:format("~10.16e", [1.23])),
     ?assertEqual(io_lib:format("~10.._e", [1.23]),       jo_lib:format("~10.._e", [1.23])),
@@ -393,7 +399,8 @@ pass_through_float_test() ->
     ?assertEqual(io_lib:format("~.. g", [1.23]),    jo_lib:format("~.. g", [1.23])),
     ?assertEqual(io_lib:format("~*g",   [10,1.23]), jo_lib:format("~*g",   [10,1.23])),
     ?assertEqual(io_lib:format("~.*g",  [3,1.23]),  jo_lib:format("~.*g",  [3,1.23])),
-    ?assertEqual(io_lib:format("~..*g", [$…,1.23]), jo_lib:format("~..*g", [$…,1.23])),
+    ?assertEqual(io_lib:format("~..*g", [$a,1.23]), jo_lib:format("~..*g", [$a,1.23])),
+%    ?assertEqual(io_lib:format("~..*g", [$…,1.23]), jo_lib:format("~..*g", [$…,1.23])),
     % two options
     ?assertEqual(io_lib:format("~10.16g", [1.23]),       jo_lib:format("~10.16g", [1.23])),
     ?assertEqual(io_lib:format("~10.._g", [1.23]),       jo_lib:format("~10.._g", [1.23])),
@@ -470,7 +477,8 @@ pass_through_terms_test() ->
     ?assertEqual(io_lib:format("~.._w",   [Trm]),     jo_lib:format("~.._w",   [Trm])),
     ?assertEqual(io_lib:format("~*w",     [20,Trm]),  jo_lib:format("~*w",     [20,Trm])),
     ?assertEqual(io_lib:format("~.*w",    [10,Trm]),  jo_lib:format("~.*w",    [10,Trm])),
-    ?assertEqual(io_lib:format("~..*w",   [$…,Trm]),  jo_lib:format("~..*w",   [$…,Trm])),
+    ?assertEqual(io_lib:format("~..*w",   [$a,Trm]),  jo_lib:format("~..*w",   [$a,Trm])),
+%    ?assertEqual(io_lib:format("~..*w",   [$…,Trm]),  jo_lib:format("~..*w",   [$…,Trm])),
     % two options
     ?assertEqual(io_lib:format("~20.10w", [Trm]),       jo_lib:format("~20.10w", [Trm])),
     ?assertEqual(io_lib:format("~20.._w", [Trm]),       jo_lib:format("~20.._w", [Trm])),
@@ -492,7 +500,8 @@ pass_through_terms_test() ->
     ?assertEqual(io_lib:format("~.._p",   [Trm]),     jo_lib:format("~.._p",   [Trm])),
     ?assertEqual(io_lib:format("~*p",     [20,Trm]),  jo_lib:format("~*p",     [20,Trm])),
     ?assertEqual(io_lib:format("~.*p",    [10,Trm]),  jo_lib:format("~.*p",    [10,Trm])),
-    ?assertEqual(io_lib:format("~..*p",   [$…,Trm]),  jo_lib:format("~..*p",   [$…,Trm])),
+    ?assertEqual(io_lib:format("~..*p",   [$a,Trm]),  jo_lib:format("~..*p",   [$a,Trm])),
+%    ?assertEqual(io_lib:format("~..*p",   [$…,Trm]),  jo_lib:format("~..*p",   [$…,Trm])),
     % two options
     ?assertEqual(io_lib:format("~20.10p", [Trm]),       jo_lib:format("~20.10p", [Trm])),
     ?assertEqual(io_lib:format("~20.._p", [Trm]),       jo_lib:format("~20.._p", [Trm])),
@@ -513,7 +522,8 @@ pass_through_terms_test() ->
     ?assertEqual(io_lib:format("~.._W",   [Trm,2]),     jo_lib:format("~.._W",   [Trm,2])),
     ?assertEqual(io_lib:format("~*W",     [20,Trm,2]),  jo_lib:format("~*W",     [20,Trm,2])),
     ?assertEqual(io_lib:format("~.*W",    [10,Trm,2]),  jo_lib:format("~.*W",    [10,Trm,2])),
-    ?assertEqual(io_lib:format("~..*W",   [$…,Trm,2]),  jo_lib:format("~..*W",   [$…,Trm,2])),
+    ?assertEqual(io_lib:format("~..*W",   [$a,Trm,2]),  jo_lib:format("~..*W",   [$a,Trm,2])),
+%    ?assertEqual(io_lib:format("~..*W",   [$…,Trm,2]),  jo_lib:format("~..*W",   [$…,Trm,2])),
     % two options
     ?assertEqual(io_lib:format("~20.10W", [Trm,2]),       jo_lib:format("~20.10W", [Trm,2])),
     ?assertEqual(io_lib:format("~20.._W", [Trm,2]),       jo_lib:format("~20.._W", [Trm,2])),
@@ -534,7 +544,8 @@ pass_through_terms_test() ->
     ?assertEqual(io_lib:format("~.._P",   [Trm,2]),     jo_lib:format("~.._P",   [Trm,2])),
     ?assertEqual(io_lib:format("~*P",     [20,Trm,2]),  jo_lib:format("~*P",     [20,Trm,2])),
     ?assertEqual(io_lib:format("~.*P",    [10,Trm,2]),  jo_lib:format("~.*P",    [10,Trm,2])),
-    ?assertEqual(io_lib:format("~..*P",   [$…,Trm,2]),  jo_lib:format("~..*P",   [$…,Trm,2])),
+    ?assertEqual(io_lib:format("~..*P",   [$a,Trm,2]),  jo_lib:format("~..*P",   [$a,Trm,2])),
+%    ?assertEqual(io_lib:format("~..*P",   [$…,Trm,2]),  jo_lib:format("~..*P",   [$…,Trm,2])),
     % two options
     ?assertEqual(io_lib:format("~20.10P", [Trm,2]),       jo_lib:format("~20.10P", [Trm,2])),
     ?assertEqual(io_lib:format("~20.._P", [Trm,2]),       jo_lib:format("~20.._P", [Trm,2])),
