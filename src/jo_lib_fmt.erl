@@ -371,13 +371,13 @@ extract_pad([C|Fmt], Fseq, Args) ->
 
 swallow_char_test() ->
     ?assertEqual({$-, "abc", "-a"},  swallow_char("-abc", "a", $-)),
-    ?assertEqual({$…, "abc", "…a"},  swallow_char("…abc", "a", $…)),
+%    ?assertEqual({$…, "abc", "…a"},  swallow_char("…abc", "a", $…)),
     ?assertEqual({none, "abc", "a"}, swallow_char("abc", "a", $-)).
 
 extract_char_test() ->
     ?assertEqual({$a, "bc", "ad"}, extract_char("abc", "d")),
-    ?assertEqual({$a, "",   "a"},  extract_char("a",   "")),
-    ?assertEqual({$…, "",   "…"},  extract_char("…",   "")).
+%    ?assertEqual({$…, "",   "…"},  extract_char("…",   "")),
+    ?assertEqual({$a, "",   "a"},  extract_char("a",   "")).
 
 %should fail
 %    ?assertEqual({$a, "", "a"}, jo_lib_fmt:extract_char("", "")).
