@@ -1,7 +1,7 @@
 
 The lady in red
 ===============
-
+[![Build Status](https://travis-ci.org/jtf/lady_in_red.png)](https://travis-ci.org/jtf/lady_in_red)
 
 #### Description
 
@@ -54,7 +54,9 @@ For more details consult the manual page for jo(3erl).
 
 #### My Hat
 
-If you find this library useful and want spend me a coffee, you can use this flattr button [![Flattr this project](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=jtf&url=https://github.com/jtf/lady_in_red&title=Lady_in_Red&language=&tags=github&category=software).
+If you find this library useful and want spend me a coffee, you can use this flattr button.
+
+[![Flattr this project](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=jtf&url=https://github.com/jtf/lady_in_red&title=Lady_in_Red&language=&tags=github&category=software)
 
 #### License
 
